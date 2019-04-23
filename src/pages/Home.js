@@ -5,7 +5,7 @@ import Header from '../components/layouts/Header';
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="home">
         <Header />
         <div className="columns">
           <div className="column">
@@ -13,6 +13,11 @@ class Home extends Component {
           </div>
           <div className="column">Hola 2</div>
         </div>
+        <style jsx>{`
+          .home {
+            background-color: #3B425E
+          }
+        `}</style>
       </div>
     );
   }

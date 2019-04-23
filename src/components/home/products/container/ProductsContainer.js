@@ -3,8 +3,9 @@ import Image from '../../../../img.jpg';
 class ProductsContainer extends Component {
   render() {
     return (
-      <div>
+      <div className="">
         <img src={Image} alt="" />
+
       </div>
     );
   }
