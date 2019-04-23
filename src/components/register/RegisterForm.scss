@@ -1,0 +1,22 @@
+.container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.title {
+  //font-family: 'Viga', sans-serif;
+  padding-top: 20%;
+  color: white;
+}
+.subtitle {
+  color: white;
+}
+.button {
+  background-color: grey;
+  border-color: grey;
+  color: white;
+}
+.link {
+  color: white;
+}

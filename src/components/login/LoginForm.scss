@@ -1,0 +1,38 @@
+//Fonts
+@import url('https://fonts.googleapis.com/css?family=Viga');
+
+.container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.title {
+  //font-family: 'Viga', sans-serif;
+  padding-top: 30%;
+  color: white;
+}
+.subtitle {
+  color: white;
+}
+.button {
+  background-color: grey;
+  border-color: grey;
+  color: white;
+  margin-bottom: 10px;
+} /*
+.login-button {
+  margin-right: 50px;
+}
+.register-button {
+  margin-left: 160px;
+}*/
+/*
+.buttons {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+}*/
+.control {
+  margin-bottom: 10px;
+}
