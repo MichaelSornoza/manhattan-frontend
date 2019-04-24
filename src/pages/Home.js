@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductsContainer from '../components/home/products/container/ProductsContainer';
-import Header from '../components/layouts/Header';
+import Header from '../components/layouts/container/Header';
 
 class Home extends Component {
   render() {
@@ -15,7 +15,7 @@ class Home extends Component {
         </div>
         <style jsx>{`
           .home {
-            background-color: #3B425E
+            background-color: #3b425e;
           }
         `}</style>
       </div>
