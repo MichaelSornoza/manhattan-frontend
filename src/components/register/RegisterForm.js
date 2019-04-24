@@ -4,7 +4,7 @@ import './RegisterForm.scss';
 
 const RegisterForm = ({ onChange, onSubmit }) => (
   <div className="container has-text-centered">
-    <h1 className="title">Register - BrandName</h1>
+    <h1 className="title title-register">Register - BrandName</h1>
     <form onSubmit={onSubmit}>
       <div className="container">
         <div className="field">

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const LoginForm = ({ error, onSubmit, onChange }) => (
   <div className="container has-text-centered">
-    <h1 className="title">Login - BrandName</h1>
+    <h1 className="title title-login">Login - BrandName</h1>
     <form onSubmit={onSubmit}>
       <div className="container">
         <div className="field">

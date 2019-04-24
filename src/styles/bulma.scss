@@ -1,1 +1,13 @@
-@import "../../node_modules/bulma/bulma.sass"
+@import '../../node_modules/bulma/bulma.sass';
+
+.team-page {
+  background-color: #3b425e;
+}
+.team-button-group {
+  justify-content: center;
+  margin-top: 30px;
+}
+.team-title {
+  color: white;
+  padding-top: 50px;
+}

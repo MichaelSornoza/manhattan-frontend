@@ -38,7 +38,7 @@ class Header extends Component {
             <p className="subtitle navbar-item">BrandName</p>
             <span
               role="button"
-              class="navbar-burger burger is-dark"
+              className="navbar-burger burger is-dark"
               data-target="navMenu"
             >
               <span />
@@ -60,7 +60,9 @@ class Header extends Component {
               <HeaderDetail details={this.state.details} />
             </div>
             <Link className="navbar-item">Registros</Link>
-            <Link className="navbar-item">Equipo</Link>
+            <Link className="navbar-item" to="/team">
+              Equipo
+            </Link>
             <Link className="navbar-item">Configuraciones</Link>
           </div>
         </div>
