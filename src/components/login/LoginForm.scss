@@ -12,27 +12,10 @@
   padding-top: 30%;
   color: white;
 }
-.subtitle {
-  color: white;
+.buttons-login {
+  justify-content: space-between;
+  color: white !important;
 }
-.button {
-  background-color: grey;
-  border-color: grey;
-  color: white;
-  margin-bottom: 10px;
-} /*
-.login-button {
-  margin-right: 50px;
-}
-.register-button {
-  margin-left: 160px;
-}*/
-/*
-.buttons {
-  justify-content: space-around;
-  display: flex;
-  flex-direction: row;
-}*/
 .control {
   margin-bottom: 10px;
 }

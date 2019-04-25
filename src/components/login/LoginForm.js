@@ -33,15 +33,15 @@ const LoginForm = ({ error, onSubmit, onChange }) => (
               <i className="fas fa-lock" />
             </span>
           </div>
+          <div className="buttons-login buttons">
+            <button className="button is-medium is-dark">Sign In</button>
+            <Link to="/register" className="button is-medium is-dark">
+              Sign Up
+            </Link>
+          </div>
+          <Link to="/recovery-password">Forgot the password</Link>
         </div>
-        <button className="button login-button large">
-          <h3 className="subtitle">Login</h3>
-        </button>
-        <Link to="/register" className="button register-button large">
-          <h3 className="subtitle">Register</h3>
-        </Link>
       </div>
-      <Link to="/recovery-password">Forgot the password</Link>
     </form>
   </div>
 );

@@ -9,14 +9,11 @@
   padding-top: 20%;
   color: white;
 }
-.subtitle {
-  color: white;
-}
-.button {
-  background-color: grey;
-  border-color: grey;
-  color: white;
-}
 .link {
-  color: white;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.buttons-register {
+  justify-content: space-between;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './TeamList.scss';
-const TeamList = ({ team }) => (
+const TeamList = ({ team, handleOpenModal }) => (
   <div className="columns is-multiline cards-container">
     {team.map(person => (
       <div className="column is-half">
@@ -37,6 +37,15 @@ const TeamList = ({ team }) => (
               <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
             </div>
           </div>
+        </div>
+        <div className="button-container">
+          <button
+            className="button is-danger edit-button"
+            name="modal-edit"
+            onClick={handleOpenModal}
+          >
+            Editar Empleado
+          </button>
         </div>
       </div>
     ))}

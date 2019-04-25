@@ -18,7 +18,6 @@ class Register extends Component {
     e.preventDefault();
   };
   handleChange = e => {
-    console.log(e);
     this.setState({
       form: {
         ...this.state.form,

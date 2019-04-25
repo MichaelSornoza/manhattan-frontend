@@ -37,7 +37,7 @@ const RegisterForm = ({ onChange, onSubmit }) => (
               <input
                 type="email"
                 className="input"
-                placeholder="Email"
+                placeholder="example@example.com"
                 name="email"
                 onChange={onChange}
               />
@@ -94,13 +94,15 @@ const RegisterForm = ({ onChange, onSubmit }) => (
               </span>
             </div>
           </div>
-          <button className="button large">
-            <h2 className="subtitle">Sign Up</h2>
-          </button>
+          <div className="buttons-register buttons">
+            <button className="button is-medium is-dark" onClick={onSubmit}>
+              Sign Up
+            </button>
+            <Link to="/login" className="button is-medium is-dark">
+              Sign In
+            </Link>
+          </div>
         </div>
-        <Link to="login" className="link">
-          <h3 className="">Sign In</h3>
-        </Link>
       </div>
     </form>
   </div>

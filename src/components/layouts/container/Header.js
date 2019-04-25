@@ -49,7 +49,7 @@ class Header extends Component {
         </div>
         <div className="navbar-menu" id="navMenu">
           <div className="navbar-end">
-            <Link href="" className="navbar-item">
+            <Link to="/" className="navbar-item">
               Panel
             </Link>
             <Link href="" className="navbar-item">
