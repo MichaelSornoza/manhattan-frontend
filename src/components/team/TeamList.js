@@ -1,51 +1,40 @@
 import React from 'react';
 import './TeamList.scss';
 const TeamList = ({ team, handleOpenModal }) => (
-  <div className="columns is-multiline cards-container">
+  <div className="cards-container">
     {team.map(person => (
-      <div className="column is-half">
-        <div className="card">
-          <div className="card-image">
-            <figure className="image is-4by3">
-              <img
-                src="https://bulma.io/images/placeholders/1280x960.png"
-                alt="Placeholder image"
-              />
-            </figure>
-          </div>
-          <div className="card-content is-dark">
-            <div className="media">
-              <div className="media-left">
-                <figure className="image is-48x48">
-                  <img
-                    src="https://bulma.io/images/placeholders/96x96.png"
-                    alt="Placeholder image"
-                  />
-                </figure>
-              </div>
-              <div className="media-content">
-                <p className="title is-4">John Smith</p>
-                <p className="subtitle is-6">@johnsmith</p>
-              </div>
-            </div>
-
-            <div className="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
-              nec iaculis mauris. <a>@bulmaio</a>.<a href="#">#css</a>{' '}
-              <a href="#">#responsive</a>
-              <br />
-              <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-            </div>
-          </div>
+      <div
+        onClick={handleOpenModal}
+        name="modal-edit"
+        className="card team-card"
+      >
+        <div className="card-image">
+          <figure className="image is-square">
+            <img
+              src="https://bulma.io/images/placeholders/1280x960.png"
+              alt="Placeholder image"
+            />
+          </figure>
         </div>
-        <div className="button-container">
-          <button
-            className="button is-danger edit-button"
-            name="modal-edit"
-            onClick={handleOpenModal}
-          >
-            Editar Empleado
-          </button>
+        <div className="card-content">
+          <div className="media">
+            <div className="media-left">
+              <figure classNamme="image is-48x48">
+                <img
+                  src="https://bulma.io/images/placeholders/96x96.png"
+                  alt="Placeholder image"
+                />
+              </figure>
+            </div>
+            <div className="media-content">
+              <p className="is-4 is-white">{person.fullname}</p>
+              <p className="is-6 is-white">Cargo: {person.role}</p>
+            </div>
+          </div>
+          <div className="content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus
+            nec iaculis mauris.
+          </div>
         </div>
       </div>
     ))}

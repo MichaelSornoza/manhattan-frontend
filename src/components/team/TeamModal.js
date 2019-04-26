@@ -6,7 +6,7 @@ import TeamModalEditForm from './TeamModalEditForm';
 const TeamModal = ({ onChange, onSubmit, modalCloseControl, modalToOpen }) => (
   <div className="modal is-active">
     <div className="modal-background" />
-    {modalToOpen == 'modal-register' ? (
+    {modalToOpen === 'modal-register' ? (
       <TeamModalRegisterForm
         onChange={onChange}
         onSubmit={onSubmit}

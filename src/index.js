@@ -5,13 +5,15 @@ import * as serviceWorker from './serviceWorker';
 //APOLLO - GRAPHQL
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
-import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { HttpLink } from 'apollo-link-http';
+
+const API_URL = 'http://34.205.24.254:8000/graphql';
 
 const httpLink = new HttpLink({
-  uri: 'None',
+  uri: API_URL,
   headers: {
-    authorization: 'none'
+    'token-x': `${window.localStorage.getItem('token')}`
   }
 });
 

@@ -1,6 +1,14 @@
-.card {
+.team-card {
   background-color: #363636;
   color: white;
+  width: 30%;
+  margin: 10px;
+  cursor: pointer;
+}
+.cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .edit-button {
   margin-top: 20px;

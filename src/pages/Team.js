@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+
+import { Query } from 'react-apollo';
+
+import { TEAM_QUERY } from '../querys/TeamQuerys';
+
 import Header from '../components/layouts/container/Header';
 import TeamList from '../components/team/TeamList';
 import TeamModal from '../components/team/TeamModal';
@@ -11,15 +16,18 @@ class Team extends Component {
       'phone-number': ''
     },
     modalToOpen: '',
+    isOpenModal: false,
     team: [
       {
         name: 'Michael'
       },
       {
         name: 'Michael'
+      },
+      {
+        name: 'Michael'
       }
-    ],
-    isOpenModal: false
+    ]
   };
 
   handleOpenModal = e => {
@@ -47,9 +55,9 @@ class Team extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="team-page">
         <Header />
-        <div className="team-page">
+        <div className="">
           <div className="has-text-centered">
             <h1 className="title team-title">Equipo de Trabajo</h1>
           </div>
@@ -72,11 +80,31 @@ class Team extends Component {
           ) : (
             <div />
           )}
-          <div className="container">
-            <TeamList
-              team={this.state.team}
-              handleOpenModal={this.handleOpenModal}
-            />
+          <div>
+            <Query query={TEAM_QUERY}>
+              {({ data, loading, error }) => {
+                if (error)
+                  return (
+                    <div>
+                      <h1 className="title">{error}</h1>
+                    </div>
+                  );
+
+                if (loading || !data) {
+                  return (
+                    <div>
+                      <h1 className="title">CARGANDO...</h1>
+                    </div>
+                  );
+                }
+                return (
+                  <TeamList
+                    team={data.me.employees}
+                    handleOpenModal={this.handleOpenModal}
+                  />
+                );
+              }}
+            </Query>
           </div>
         </div>
       </div>
