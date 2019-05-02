@@ -1,36 +1,45 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-//APOLLO - GRAPHQL
-import { ApolloProvider } from 'react-apollo';
-import { ApolloClient } from 'apollo-client';
-import { InMemoryCache } from 'apollo-cache-inmemory';
-import { HttpLink } from 'apollo-link-http';
 
-const API_URL = 'http://34.205.24.254:8000/graphql';
+import {
+  ApolloClient,
+  ApolloLink,
+  InMemoryCache,
+  HttpLink
+} from 'apollo-boost';
+
+import { ApolloProvider } from 'react-apollo';
+
+const API_URL = 'http://35.173.211.1:8000/graphql';
 
 const httpLink = new HttpLink({
-  uri: API_URL,
-  headers: {
-    'token-x': `${window.localStorage.getItem('token')}`
-  }
+  uri: API_URL
+});
+
+const authLink = new ApolloLink((operation, forward) => {
+  const token = localStorage.getItem('token');
+
+  operation.setContext({
+    headers: {
+      authorization: token ? `${token}` : ''
+    }
+  });
+
+  return forward(operation);
 });
 
 const cache = new InMemoryCache();
 
 const client = new ApolloClient({
-  link: httpLink,
-  cache
+  link: authLink.concat(httpLink),
+  cache,
+  connectToDevTools: true
 });
+
 ReactDOM.render(
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>,
   document.getElementById('root')
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();

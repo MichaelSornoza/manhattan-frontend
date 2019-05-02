@@ -1,25 +1,71 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { Mutation } from 'react-apollo';
 
+import { UpdateEmployee } from '../../mutations/UpdateEmployee';
 import TeamModalRegisterForm from './TeamModalRegisterForm';
 import TeamModalEditForm from './TeamModalEditForm';
 
-const TeamModal = ({ onChange, onSubmit, modalCloseControl, modalToOpen }) => (
-  <div className="modal is-active">
-    <div className="modal-background" />
-    {modalToOpen === 'modal-register' ? (
-      <TeamModalRegisterForm
-        onChange={onChange}
-        onSubmit={onSubmit}
-        modalCloseControl={modalCloseControl}
-      />
-    ) : (
-      <TeamModalEditForm
-        onChange={onChange}
-        onSubmit={onSubmit}
-        modalCloseControl={modalCloseControl}
-      />
-    )}
-  </div>
-);
+class TeamModal extends Component {
+  state = {
+    fullname: '',
+    role: '',
+    phone: ''
+  };
 
+  handleChange = e => {
+    console.log(e.target);
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleSubmit = (e, update_my_employee) => {
+    e.preventDefault();
+    update_my_employee()
+      .then(data => {
+        console.log(data);
+        this.props.modalCloseControl();
+      })
+      .catch(err => console.log(err));
+  };
+
+  render() {
+    const { modalCloseControl, modalToOpen, id } = this.props;
+    const { fullname, role, phone } = this.state;
+    return (
+      <div className="modal is-active">
+        <div className="modal-background" />
+        {modalToOpen === 'modal-register' ? (
+          <TeamModalRegisterForm
+            onChange={this.handleChange}
+            onSubmit={this.handleSubmit}
+            modalCloseControl={modalCloseControl}
+          />
+        ) : (
+          <Mutation
+            mutation={UpdateEmployee}
+            variables={{ id: id, fullname: fullname, role: role, phone: phone }}
+          >
+            {(update_my_employee, { data, loading, error }) => (
+              <div>
+                {error && console.log(error)}
+                {loading ? (
+                  <h1 className="title">Cargando...</h1>
+                ) : (
+                  <TeamModalEditForm
+                    update_my_employee={update_my_employee}
+                    onChange={this.handleChange}
+                    onSubmit={this.handleSubmit}
+                    modalCloseControl={modalCloseControl}
+                    id={id}
+                  />
+                )}
+              </div>
+            )}
+          </Mutation>
+        )}
+      </div>
+    );
+  }
+}
 export default TeamModal;

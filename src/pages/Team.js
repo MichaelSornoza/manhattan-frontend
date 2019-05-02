@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { Query } from 'react-apollo';
 
 import { TEAM_QUERY } from '../querys/TeamQuerys';
@@ -10,31 +9,24 @@ import TeamModal from '../components/team/TeamModal';
 class Team extends Component {
   state = {
     form: {
-      'full-name': '',
+      fullname: '',
       email: '',
       password: '',
-      'phone-number': ''
+      phone: ''
     },
     modalToOpen: '',
     isOpenModal: false,
-    team: [
-      {
-        name: 'Michael'
-      },
-      {
-        name: 'Michael'
-      },
-      {
-        name: 'Michael'
-      }
-    ]
+    id: '',
+    data: []
   };
 
-  handleOpenModal = e => {
+  handleOpenModal = (e, id) => {
     this.setState({
+      id: id,
       modalToOpen: e.target.name,
       isOpenModal: true
     });
+    console.log(this.state);
   };
   handleCloseModal = () => {
     this.setState({
@@ -76,40 +68,41 @@ class Team extends Component {
               modalToOpen={this.state.modalToOpen}
               onSubmit={this.handleSubmit}
               onChange={this.handleChange}
+              id={this.state.id}
             />
           ) : (
             <div />
           )}
           <div>
             <Query query={TEAM_QUERY}>
-              {({ data, loading, error }) => {
-                if (error)
-                  return (
+              {({ data, loading, error }) => (
+                <div>
+                  {error && (
                     <div>
                       <h1 className="title">{error}</h1>
                     </div>
-                  );
-
-                if (loading || !data) {
-                  return (
+                  )}
+                  {loading || !data ? (
                     <div>
                       <h1 className="title">CARGANDO...</h1>
                     </div>
-                  );
-                }
-                return (
-                  <TeamList
-                    team={data.me.employees}
-                    handleOpenModal={this.handleOpenModal}
-                  />
-                );
-              }}
+                  ) : (
+                    <TeamList
+                      team={data.me.employees}
+                      handleOpenModal={this.handleOpenModal}
+                    />
+                  )}
+                </div>
+              )}
             </Query>
           </div>
         </div>
       </div>
     );
   }
+}
+{
+  /*  */
 }
 
 export default Team;

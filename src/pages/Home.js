@@ -1,44 +1,49 @@
 import React, { Component } from 'react';
 import ProductsContainer from '../components/home/products/container/ProductsContainer';
 import Header from '../components/layouts/container/Header';
-
 import { Redirect } from 'react-router-dom';
-
-import { MeQuery } from '../querys/MeQuery';
-
+import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
+const ME_QUERY = gql`
+  {
+    me {
+      fullname
+    }
+  }
+`;
+
 class Home extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    localStorage.getItem('token');
+  }
+
   render() {
     return (
-      <Query query={MeQuery}>
-        {({ data, loading, error }) => {
-          if (error) {
-            return <h1 className="title">ERROR</h1>;
-          }
-          console.log(window.localStorage.getItem('token'));
-          console.log(data);
-          if (loading || !data.me) {
-            return <h1 className="title">CARGANDO...</h1>;
-          }
-          return (
-            <div className="home">
-              <Header />
-              <div className="columns">
-                <div className="column">
-                  <ProductsContainer />
-                </div>
-                <div className="column">Hola 2</div>
+      <Query query={ME_QUERY}>
+        {({ data, loading, error }) => (
+          <div>
+            {error && (
+              <div>
+                <Redirect to="/login" />
               </div>
-              <style jsx>{`
-                .home {
-                  background-color: #3b425e;
-                }
-              `}</style>
-            </div>
-          );
-        }}
+            )}
+            {loading || !data ? (
+              <h1 className="title">CARGANDO...</h1>
+            ) : (
+              <div className="home">
+                {console.log(data)}
+                <Header />
+                <div className="columns">
+                  <div className="column">
+                    <ProductsContainer />
+                  </div>
+                  <div className="column">Hola 2</div>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </Query>
     );
   }

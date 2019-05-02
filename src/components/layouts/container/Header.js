@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import HeaderDetail from '../components/DetailList';
 
@@ -9,19 +9,25 @@ class Header extends Component {
   state = {
     details: [
       {
-        name: 'Michael'
+        name: 'Michael',
+        id: 1
       },
       {
-        name: 'Testing'
+        name: 'Testing',
+        id: 2
       },
       {
-        name: 'Enzo'
+        name: 'Enzo',
+        id: 3
       }
     ]
   };
   componentDidMount() {
     this.responsive();
   }
+  handleLogout = () => {
+    localStorage.removeItem('token');
+  };
   responsive = () => {
     let burger = document.querySelector('.burger');
     let nav = document.querySelector('#' + burger.dataset.target);
@@ -52,18 +58,29 @@ class Header extends Component {
             <Link to="/" className="navbar-item">
               Panel
             </Link>
-            <Link href="" className="navbar-item">
+            <Link to="/products" className="navbar-item">
               Productos
             </Link>
             <div className="navbar-item has-dropdown is-hoverable">
               <p className="navbar-link">Facturas Abiertas</p>
               <HeaderDetail details={this.state.details} />
             </div>
-            <Link className="navbar-item">Registros</Link>
+            <Link className="navbar-item" to="/log">
+              Registros
+            </Link>
             <Link className="navbar-item" to="/team">
               Equipo
             </Link>
-            <Link className="navbar-item">Configuraciones</Link>
+            <Link className="navbar-item" to="/configurations">
+              Configuraciones
+            </Link>
+            <Link
+              className="navbar-item"
+              onClick={this.handleLogout}
+              to="/login"
+            >
+              Logout
+            </Link>
           </div>
         </div>
       </nav>

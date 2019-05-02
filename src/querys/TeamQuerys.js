@@ -7,6 +7,7 @@ export const TEAM_QUERY = gql`
         role
         fullname
         phone
+        id
       }
     }
   }
