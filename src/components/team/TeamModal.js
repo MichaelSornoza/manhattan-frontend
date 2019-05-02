@@ -21,6 +21,7 @@ class TeamModal extends Component {
 
   handleSubmit = (e, update_my_employee) => {
     e.preventDefault();
+    console.log(`I'm Alive`);
     update_my_employee()
       .then(data => {
         console.log(data);

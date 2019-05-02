@@ -9,7 +9,7 @@ import './TeamList.scss';
 class TeamList extends Component {
   handleDeleteEmployee = (e, delete_my_employe) => {
     e.preventDefault();
-
+    console.log('is executing');
     delete_my_employe()
       .then(data => console.log(data))
       .catch(error => console.log(error));

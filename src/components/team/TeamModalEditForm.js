@@ -75,7 +75,10 @@ const TeamModalEditForm = ({
                 </div>
               </section>
               <footer className="modal-card-foot">
-                <button className="button is-success" type="submit">
+                <button
+                  className="button is-success"
+                  onClick={e => onSubmit(e, update_my_employee)}
+                >
                   Guardar
                 </button>
                 <button
