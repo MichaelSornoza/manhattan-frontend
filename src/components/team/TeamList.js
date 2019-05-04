@@ -60,7 +60,7 @@ class TeamList extends Component {
                   </div>
                 </div>
                 <button
-                  className="button is-danger"
+                  className="button is-danger delete-employee"
                   onClick={e => this.handleDeleteEmployee(e, delete_my_employe)}
                 >
                   Elimiar Empleado
