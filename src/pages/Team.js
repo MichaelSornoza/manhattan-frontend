@@ -5,46 +5,50 @@ import { TEAM_QUERY } from '../querys/TeamQuerys';
 
 import Header from '../components/layouts/container/Header';
 import TeamList from '../components/team/TeamList';
-import TeamModal from '../components/team/TeamModal';
+import TeamModalRegister from '../components/team/TeamModalRegister';
+import TeamModalEdit from '../components/team/TeamModalEdit';
+
 class Team extends Component {
   state = {
-    form: {
-      fullname: '',
-      email: '',
-      password: '',
-      phone: ''
-    },
-    modalToOpen: '',
-    isOpenModal: false,
-    id: '',
-    data: []
+    editModalOpen: false,
+    registerModalOpen: false,
+    id: ''
   };
 
-  handleOpenModal = (e, id) => {
+  handleOpenEditModal = (e, id) => {
     this.setState({
       id: id,
-      modalToOpen: e.target.name,
-      isOpenModal: true
+      editModalOpen: true
     });
-    console.log(this.state);
   };
+
+  handleOpenRegisterModal = () => {
+    this.setState({
+      registerModalOpen: true
+    });
+  };
+
   handleCloseModal = () => {
     this.setState({
-      isOpenModal: false,
-      modalToOpen: ''
+      editModalOpen: false,
+      registerModalOpen: false
     });
   };
+
   handleSubmit = e => {
     e.preventDefault();
   };
-  handleChange = e => {
+
+  handleEditFormChange = e => {
+    console.log(e.value);
     this.setState({
-      form: {
+      editForm: {
         ...this.state.form,
         [e.target.name]: e.target.value
       }
     });
   };
+
   render() {
     return (
       <div className="team-page">
@@ -62,47 +66,35 @@ class Team extends Component {
               Registrar empleado
             </button>
           </div>
-          {this.state.isOpenModal ? (
-            <TeamModal
-              modalCloseControl={this.handleCloseModal}
-              modalToOpen={this.state.modalToOpen}
-              onSubmit={this.handleSubmit}
-              onChange={this.handleChange}
-              id={this.state.id}
-            />
-          ) : (
-            <div />
-          )}
           <div>
             <Query query={TEAM_QUERY}>
               {({ data, loading, error }) => (
                 <div>
-                  {error && (
-                    <div>
-                      <h1 className="title">{error}</h1>
-                    </div>
-                  )}
+                  {error && <h1 className="title">{error}</h1>}
                   {loading || !data ? (
-                    <div>
-                      <h1 className="title">CARGANDO...</h1>
-                    </div>
+                    <h1 className="title">CARGANDO...</h1>
                   ) : (
-                    <TeamList
-                      team={data.me.employees}
-                      handleOpenModal={this.handleOpenModal}
-                    />
+                    <div>
+                      <TeamList
+                        team={data.me.employees}
+                        handleOpenEditModal={this.handleOpenEditModal}
+                      />
+                    </div>
                   )}
                 </div>
               )}
             </Query>
           </div>
         </div>
+        {this.state.editModalOpen && (
+          <TeamModalEdit
+            id={this.state.id}
+            handleCloseModal={this.handleCloseModal}
+          />
+        )}
       </div>
     );
   }
-}
-{
-  /*  */
 }
 
 export default Team;

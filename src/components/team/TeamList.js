@@ -16,7 +16,7 @@ class TeamList extends Component {
   };
 
   render() {
-    const { team, handleOpenModal } = this.props;
+    const { team, handleOpenEditModal } = this.props;
 
     return (
       <div className="cards-container">
@@ -24,7 +24,7 @@ class TeamList extends Component {
           <Mutation mutation={DeleteEmployee} variables={{ id: person.id }}>
             {(delete_my_employe, { data, loading, error }) => (
               <div
-                onClick={e => handleOpenModal(e, person.id)}
+                onClick={e => handleOpenEditModal(e, person.id)}
                 name="modal-edit"
                 key={person.id}
                 className="card team-card"

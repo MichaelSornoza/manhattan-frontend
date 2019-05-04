@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 
 import { UpdateEmployee } from '../../mutations/UpdateEmployee';
-import TeamModalRegisterForm from './TeamModalRegisterForm';
-import TeamModalEditForm from './TeamModalEditForm';
+import TeamModalRegisterForm from './TeamModalRegister';
+import TeamModalEditForm from './TeamModalEdit';
 
 class TeamModal extends Component {
   state = {
