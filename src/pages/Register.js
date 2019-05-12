@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
-import { REGISTER } from '../mutations/RegisterMutation';
+import { REGISTER } from '../mutations/Register';
 
 import RegisterForm from '../components/register/RegisterForm';
 import Particles from '../components/particles/Particle';

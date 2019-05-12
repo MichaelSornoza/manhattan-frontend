@@ -21,31 +21,15 @@ class Team extends Component {
       editModalOpen: true
     });
   };
-
   handleOpenRegisterModal = () => {
     this.setState({
       registerModalOpen: true
     });
   };
-
   handleCloseModal = () => {
     this.setState({
       editModalOpen: false,
       registerModalOpen: false
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-  };
-
-  handleEditFormChange = e => {
-    console.log(e.value);
-    this.setState({
-      editForm: {
-        ...this.state.form,
-        [e.target.name]: e.target.value
-      }
     });
   };
 
@@ -61,7 +45,7 @@ class Team extends Component {
             <button
               className="button is-success"
               name="modal-register"
-              onClick={this.handleOpenModal}
+              onClick={this.handleOpenRegisterModal}
             >
               Registrar empleado
             </button>
@@ -86,6 +70,9 @@ class Team extends Component {
             </Query>
           </div>
         </div>
+        {this.state.registerModalOpen && (
+          <TeamModalRegister handleCloseModal={this.handleCloseModal} />
+        )}
         {this.state.editModalOpen && (
           <TeamModalEdit
             id={this.state.id}

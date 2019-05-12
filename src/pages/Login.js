@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
-import { LOGIN } from '../mutations/LoginMutation';
+import { LOGIN } from '../mutations/Login';
 
 import ParticlesComponent from '../components/particles/Particle';
 import LoginForm from '../components/login/LoginForm';

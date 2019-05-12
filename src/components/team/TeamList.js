@@ -11,7 +11,7 @@ class TeamList extends Component {
     e.preventDefault();
     console.log('is executing');
     delete_my_employe()
-      .then(data => console.log(data))
+      .then(data => window.location.reload())
       .catch(error => console.log(error));
   };
 
@@ -30,15 +30,6 @@ class TeamList extends Component {
                 className="card team-card"
               >
                 {error && <h1 className="title">Error al borrar empleado</h1>}
-                {data && <Redirect to="/team" />}
-                <div className="card-image">
-                  <figure className="image is-square">
-                    <img
-                      src="https://bulma.io/images/placeholders/1280x960.png"
-                      alt="Placeholder image"
-                    />
-                  </figure>
-                </div>
                 <div className="card-content">
                   <div className="media">
                     <div className="media-left">
