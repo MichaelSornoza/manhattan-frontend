@@ -21,7 +21,7 @@ class TeamModalEditForm extends Component {
       form: {
         ...this.state.form,
         [e.target.name]:
-          e.target.name == 'role' ? Number(e.target.vale) : e.target.value
+          e.target.name === 'role' ? Number(e.target.vale) : e.target.value
       }
     });
   };

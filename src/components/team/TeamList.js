@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Mutation } from 'react-apollo';
-import { Redirect } from 'react-router-dom';
 
 import { DeleteEmployee } from '../../mutations/DeleteEmployee';
 
@@ -21,12 +20,15 @@ class TeamList extends Component {
     return (
       <div className="cards-container">
         {team.map(person => (
-          <Mutation mutation={DeleteEmployee} variables={{ id: person.id }}>
+          <Mutation
+            mutation={DeleteEmployee}
+            variables={{ id: person.id }}
+            key={person.id}
+          >
             {(delete_my_employe, { data, loading, error }) => (
               <div
                 onClick={e => handleOpenEditModal(e, person.id)}
                 name="modal-edit"
-                key={person.id}
                 className="card team-card"
               >
                 {error && <h1 className="title">Error al borrar empleado</h1>}

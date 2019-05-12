@@ -18,7 +18,7 @@ class TeamModalRegisterForm extends Component {
       form: {
         ...this.state.form,
         [e.target.name]:
-          e.target.name == 'role' ? Number(e.target.value) : e.target.value
+          e.target.name === 'role' ? Number(e.target.value) : e.target.value
       }
     });
   };

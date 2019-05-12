@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import ProductsContainer from '../components/home/products/container/ProductsContainer';
-import Header from '../components/layouts/container/Header';
 import { Redirect } from 'react-router-dom';
 import gql from 'graphql-tag';
 import { Query } from 'react-apollo';
 
+import ProductsContainer from '../components/home/products/container/ProductsContainer';
+import Header from '../components/layouts/container/Header';
+import ScreenLoader from '../components/load-screen/ScreenLoader';
 const ME_QUERY = gql`
   {
     me {
@@ -15,7 +16,7 @@ const ME_QUERY = gql`
 
 class Home extends Component {
   componentDidMount() {
-    localStorage.getItem('token');
+    console.log(window.localStorage.getItem('token'));
   }
 
   render() {
@@ -29,10 +30,9 @@ class Home extends Component {
               </div>
             )}
             {loading || !data ? (
-              <h1 className="title">CARGANDO...</h1>
+              <ScreenLoader isActive={true} />
             ) : (
               <div className="home">
-                {console.log(data)}
                 <Header />
                 <div className="columns">
                   <div className="column">

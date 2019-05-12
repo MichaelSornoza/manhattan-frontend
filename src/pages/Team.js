@@ -7,6 +7,7 @@ import Header from '../components/layouts/container/Header';
 import TeamList from '../components/team/TeamList';
 import TeamModalRegister from '../components/team/TeamModalRegister';
 import TeamModalEdit from '../components/team/TeamModalEdit';
+import ScreenLoader from '../components/load-screen/ScreenLoader';
 
 class Team extends Component {
   state = {
@@ -56,7 +57,7 @@ class Team extends Component {
                 <div>
                   {error && <h1 className="title">{error}</h1>}
                   {loading || !data ? (
-                    <h1 className="title">CARGANDO...</h1>
+                    <ScreenLoader isActive={true} />
                   ) : (
                     <div>
                       <TeamList

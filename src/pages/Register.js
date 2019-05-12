@@ -8,13 +8,15 @@ import Particles from '../components/particles/Particle';
 
 class Register extends Component {
   state = {
-    email: '',
-    fullname: '',
-    phone: '',
-    company: '',
-    city: '',
-    country: '',
-    password: ''
+    form: {
+      email: '',
+      fullname: '',
+      phone: '',
+      company: '',
+      city: '',
+      country: '',
+      password: ''
+    }
   };
   handleSubmit = (e, signUp) => {
     e.preventDefault();
@@ -27,60 +29,16 @@ class Register extends Component {
       });
   };
   handleChange = e => {
-    switch (e.target.name) {
-      case 'email':
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-        break;
-      case 'fullname':
-        this.setState({
-          fullname: e.target.value
-        });
-        break;
-      case 'phone':
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-        break;
-      case 'city':
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-        break;
-      case 'country':
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-        break;
-      case 'company':
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-        break;
-      case 'password':
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-        break;
-      default:
-        break;
-    }
+    this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value
+      }
+    });
   };
   render() {
     return (
-      <Mutation
-        mutation={REGISTER}
-        variables={{
-          email: this.state.email,
-          fullname: this.state.fullname,
-          phone: this.state.phone,
-          city: this.state.city,
-          country: this.state.country,
-          company: this.state.company,
-          password: this.state.password
-        }}
-      >
+      <Mutation mutation={REGISTER} variables={this.state.form}>
         {(signUp, { data, loading, error }) => (
           <div>
             {error && <h1 className="title">ERROR...</h1>}

@@ -3,6 +3,7 @@ import { Mutation } from 'react-apollo';
 import { Redirect } from 'react-router-dom';
 import { LOGIN } from '../mutations/Login';
 
+import ScreenLoader from '../components/load-screen/ScreenLoader';
 import ParticlesComponent from '../components/particles/Particle';
 import LoginForm from '../components/login/LoginForm';
 
@@ -14,51 +15,35 @@ class Login extends Component {
       password: ''
     }
   };
-
-  componentDidMount() {}
-
   handleSubmit = (e, signIn) => {
     e.preventDefault();
+    localStorage.removeItem('token');
     signIn()
       .then(data => {
-        localStorage.removeItem('token');
         localStorage.setItem('token', data.data.signIn.token);
+        console.log(localStorage.getItem('token'));
       })
       .catch(err => console.log(err));
   };
 
   handleChange = e => {
-    switch (e.target.name) {
-      case 'email':
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-        break;
-      case 'password':
-        this.setState({
-          [e.target.name]: e.target.value
-        });
-        break;
-      default:
-        break;
-    }
+    this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value
+      }
+    });
   };
 
   render() {
     return (
-      <Mutation
-        mutation={LOGIN}
-        variables={{
-          email: this.state.email,
-          password: this.state.password
-        }}
-      >
+      <Mutation mutation={LOGIN} variables={this.state.form}>
         {(signIn, { data, loading, error }) => {
           if (error) {
             console.log(error);
           }
           if (loading) {
-            return <h1 className="title">CARGANDO...</h1>;
+            return <ScreenLoader isActive={true} />;
           }
           if (data) {
             return <Redirect to="/" />;
