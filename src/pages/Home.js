@@ -24,11 +24,7 @@ class Home extends Component {
       <Query query={ME_QUERY}>
         {({ data, loading, error }) => (
           <div>
-            {error && (
-              <div>
-                <Redirect to="/login" />
-              </div>
-            )}
+            {error && <Redirect to="/login" />}
             {loading || !data ? (
               <ScreenLoader isActive={true} />
             ) : (
